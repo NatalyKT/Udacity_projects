@@ -1,0 +1,2 @@
+All photos of this site are provided to the author of this page in agreement with their owner, or were freely available for download and use on photohostings and other resources. 
+All rights to the photos belong to their owners and can be removed from the site at any time on the first request of the owner.
