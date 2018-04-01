@@ -1,0 +1,265 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
+html,
+body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: url(../img/abstract-dew-fresh-207355.jpg);
+	background-size: cover;
+	font-family: 'Coda', cursive;
+	color: blanchedalmond; 
+	}
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+h1 {
+	font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    color: blanchedalmond; 
+}
+
+.moves {
+    color: blanchedalmond;
+}
+
+
+/*
+ * Styles for the deck of cards
+ */
+
+
+.deck {
+	width: 660px;
+    min-height: 680px;
+    background: linear-gradient(160deg, #fffacd 0%, #784919 100%);
+    padding: 32px;
+    border-radius: 10px;
+    box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 3em;
+}
+
+.deck .card {
+	height: 125px;
+    width: 125px;
+    background: #2e3d49;
+    font-size: 0;
+    color: #ffffff;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
+}
+
+.deck .card.open {
+	transform: rotateY(0);
+	background: #02b3e4;
+	cursor: default;
+	animation-name: flipInY;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: 0.9s;
+}
+
+.deck .card.show {
+	font-size: 33px;
+}
+
+.deck .card.match {
+	cursor: default;
+	background: url('../img/207355.jpg');
+	font-size: 33px;
+	animation-name: tossing;
+	-webkit-animation-name: tossing;	
+	animation-duration: 2.5s;	
+	-webkit-animation-duration: 2.5s;
+	opacity: 0.7;
+}
+
+.deck .card.unmatched {
+	animation-name: pulse;
+	-webkit-backface-visibility: visible !important;
+	backface-visibility: visible !important;
+	animation-duration: 0.9s;
+	background: #ff8181;
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+
+.score-panel {
+	text-align: left;
+	margin-bottom: 10px;
+}
+
+.score-panel .stars {
+	margin: 0;
+	padding: 0;
+	display: inline-block;
+	margin: 0 20px 0 0;
+}
+
+.score-panel .stars li {
+	list-style: none;
+	display: inline-block;
+	
+}
+
+.score-panel .restart {
+	float: right;
+	cursor: pointer;
+	padding-left: 200px;
+}
+
+.timer {
+	display: inline-block;
+	margin: 0 5px 0 0;
+	padding-left: 70px;
+}
+
+
+/*
+ * Styles for congratulations modal
+ */
+
+
+.overlay {
+	position: fixed;
+	width: 70%;
+
+	top: 10;
+	bottom: 10;
+	left: 10;
+	right: 10;
+	background: rgba(0, 0, 0, 0.7);
+	transition: opacity 500ms;
+	visibility: hidden;
+	opacity: 0.5;
+}
+
+.overlay:target {
+	visibility: visible;
+	opacity: 1;
+}
+  
+.popup_menu {
+	margin: 70px auto;
+	padding: 20px;
+	background: #000000;
+	border-radius: 5px;
+	width: 85%;
+	position: relative;
+	transition: all 5s ease-in-out;
+	font-family: 'Coda', cursive;
+	opacity: 0.5;
+}
+  
+.popup .close {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	transition: all 200ms;
+	font-size: 30px;
+	font-weight: bold;
+	text-decoration: none;
+	color: blanchedalmond;
+}
+
+.popup .close:hover {
+	color:  blanchedalmond;
+}
+
+.popup .congrats, 
+.score {
+	max-height: 30%;
+	overflow: auto;
+	text-align: center;
+}
+
+.show {
+	visibility: visible !important;
+	opacity: 100 !important;
+}
+
+#starRating li {
+	display: inline-block;
+}
+
+#play-again {
+	background-color: #141214;
+	padding: 0.7rem 0.7rem;
+	font-size: 1.1rem;
+	display: block;
+	margin: 0 auto;
+	width: 23%;
+	font-family: 'Coda', cursive;
+	color: blanchedalmond;
+	border-radius: 5px;
+}
+
+/* animations */
+@keyframes flipInY {
+0%, from {
+transform: perspective(200px) rotateY(180deg);
+}
+40% {
+transform: perspective(200px) rotateY(-10deg);
+}
+70% {
+transform: perspective(200px) rotateY(10deg);
+}
+100%, to {
+transform: perspective(200px) rotateY(0deg);
+}
+}
+
+@keyframes tossing {
+	0% {
+		transform: rotate(-4deg);	
+	}
+	50% {
+		transform: rotate(4deg);
+	}
+	100% {
+		transform: rotate(-4deg);	
+	}						
+}
+
+@keyframes pulse {
+	from {
+		transform: scale3d(1, 1, 1);
+	}
+
+	50% {
+		transform: scale3d(1.2, 1.2, 1.2);
+	}
+
+	to {
+		transform: scale3d(1, 1, 1);
+	}
+}
