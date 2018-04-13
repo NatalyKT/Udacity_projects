@@ -1,157 +1,203 @@
-var c = "function" == typeof Object.defineProperties ? Object.defineProperty : function(a, b, g) {
-  a != Array.prototype && a != Object.prototype && (a[b] = g.value);
-}, d = "undefined" != typeof window && window === this ? this : "undefined" != typeof global && null != global ? global : this;
-function e() {
-  e = function() {
-  };
-  d.Symbol || (d.Symbol = f);
-}
-var f = function() {
-  var a = 0;
-  return function(b) {
-    return "jscomp_symbol_" + (b || "") + a++;
-  };
-}();
-function h() {
-  e();
-  var a = d.Symbol.iterator;
-  a || (a = d.Symbol.iterator = d.Symbol("iterator"));
-  "function" != typeof Array.prototype[a] && c(Array.prototype, a, {configurable:!0, writable:!0, value:function() {
-    return k(this);
-  }});
-  h = function() {
-  };
-}
-function k(a) {
-  var b = 0;
-  return l(function() {
-    return b < a.length ? {done:!1, value:a[b++]} : {done:!0};
-  });
-}
-function l(a) {
-  h();
-  a = {next:a};
-  a[d.Symbol.iterator] = function() {
-    return this;
-  };
-  return a;
-}
-function m() {
-  var a = n;
-  h();
-  var b = a[Symbol.iterator];
-  a = b ? b.call(a) : k(a);
-  for (var g = []; !(b = a.next()).done;) {
-    g.push(b.value);
-  }
-  return g;
-}
-var n = document.getElementsByClassName("card"), p = [].concat(n instanceof Array ? n : m());
-console.log(p);
-var q = document.getElementById("card-deck"), t = 0, u = document.querySelector(".moves"), v = document.querySelectorAll(".fa-star"), w = document.getElementsByClassName("match"), x = document.querySelector(".close"), y = document.getElementById("popup_menu"), z = [];
-function A() {
-  for (var a = p, b = a.length, g, r; 0 !== b;) {
-    r = Math.floor(Math.random() * b), --b, g = a[b], a[b] = a[r], a[r] = g;
-  }
-  return a;
-}
-document.body.onload = B();
-function B() {
-  p = A();
-  for (var a = 0; a < p.length; a++) {
-    q.innerHTML = "", [].forEach.call(p, function(a) {
-      q.appendChild(a);
-    }), p[a].classList.remove("show", "open", "match", "disabled");
-  }
-  t = 0;
-  u.innerHTML = t;
-  for (a = 0; a < v.length; a++) {
-    v[a].style.color = "#FFD700", v[a].style.visibility = "visible";
-  }
-  hour = C = D = 0;
-  document.querySelector(".timer").innerHTML = "0 mins 0 secs";
-  clearInterval(E);
-}
-function F() {
-  this.classList.toggle("open");
-  this.classList.toggle("show");
-  this.classList.toggle("disabled");
-}
-function G() {
-  z.push(this);
-  if (2 === z.length) {
-    t++;
-    u.innerHTML = t;
-    1 == t && (hour = C = D = 0, H());
-    if (8 < t && 12 > t) {
-      for (I = 0; 3 > I; I++) {
-        1 < I && (v[I].style.visibility = "collapse");
-      }
-    } else {
-      if (13 < t) {
-        for (I = 0; 3 > I; I++) {
-          0 < I && (v[I].style.visibility = "collapse");
-        }
-      }
+let card = document.getElementsByClassName("card");
+let cards = [...card]
+console.log(cards);
+
+const deck = document.getElementById("card-deck");
+
+let moves = 0;
+let counter = document.querySelector(".moves");
+
+const stars = document.querySelectorAll(".fa-star");
+
+let matchedCard = document.getElementsByClassName("match");
+
+ let starsList = document.querySelectorAll(".stars li");
+
+ let closeicon = document.querySelector(".close");
+
+ let modal = document.getElementById("winner_panel")
+
+var openedCards = [];
+
+y
+function shuffle(array) {
+    var currentIndex = array.length, temporaryValue, randomIndex;
+
+    while (currentIndex !== 0) {
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex -= 1;
+        temporaryValue = array[currentIndex];
+        array[currentIndex] = array[randomIndex];
+        array[randomIndex] = temporaryValue;
     }
-    z[0].type === z[1].type ? (z[0].classList.add("match", "disabled"), z[1].classList.add("match", "disabled"), z[0].classList.remove("show", "open", "no-event"), z[1].classList.remove("show", "open", "no-event"), z = []) : J();
-  }
-}
-function J() {
-  z[0].classList.add("unmatched");
-  z[1].classList.add("unmatched");
-  K();
-  setTimeout(function() {
-    z[0].classList.remove("show", "open", "no-event", "unmatched");
-    z[1].classList.remove("show", "open", "no-event", "unmatched");
-    L();
-    z = [];
-  }, 1100);
-}
-function K() {
-  Array.prototype.filter.call(p, function(a) {
-    a.classList.add("disabled");
-  });
-}
-function L() {
-  Array.prototype.filter.call(p, function(a) {
-    a.classList.remove("disabled");
-    for (a = 0; a < w.length; a++) {
-      w[a].classList.add("disabled");
+
+    return array;
+};
+
+
+document.body.onload = startGame();
+
+function startGame(){
+    cards = shuffle(cards);
+    for (var i = 0; i < cards.length; i++){
+        deck.innerHTML = "";
+        [].forEach.call(cards, function(item) {
+            deck.appendChild(item);
+        });
+        cards[i].classList.remove("show", "open", "match", "disabled");
     }
-  });
-}
-var D = 0, C = 0;
-hour = 0;
-var M = document.querySelector(".timer"), E;
-function H() {
-  E = setInterval(function() {
-    M.innerHTML = C + "mins " + D + "secs";
-    D++;
-    60 == D && (C++, D = 0);
-    60 == C && (hour++, C = 0);
-  }, 1000);
-}
-function N() {
-  if (16 == w.length) {
-    clearInterval(E);
-    finalTime = M.innerHTML;
-    y.classList.add("show");
-    var a = document.querySelector(".stars").innerHTML;
-    document.getElementById("finalMove").innerHTML = t;
-    document.getElementById("starRating").innerHTML = a;
-    document.getElementById("totalTime").innerHTML = finalTime;
-    O();
-  }
+  
+  
+    moves = 0;
+    counter.innerHTML = moves;
+ 
+    for (var i= 0; i < stars.length; i++){
+        stars[i].style.color = "#FFD700";
+        stars[i].style.visibility = "visible";
+    }
+
+    second = 0;
+    minute = 0; 
+    hour = 0;
+    var timer = document.querySelector(".timer");
+    timer.innerHTML = "0 mins 0 secs";
+    clearInterval(interval);
 }
 
-function O() {
-  x.addEventListener("click", function() {
-    y.classList.remove("show");
-    B();
-  });
+var displayCard = function (){
+    this.classList.toggle("open");
+    this.classList.toggle("show");
+    this.classList.toggle("disabled");
+};
+
+
+function cardOpen() {
+    openedCards.push(this);
+    var len = openedCards.length;
+    if(len === 2){
+        moveCounter();
+        if(openedCards[0].type === openedCards[1].type){
+            matched();
+        } else {
+            unmatched();
+        }
+    }
+};
+
+function matched(){
+    openedCards[0].classList.add("match", "disabled");
+    openedCards[1].classList.add("match", "disabled");
+    openedCards[0].classList.remove("show", "open", "no-event");
+    openedCards[1].classList.remove("show", "open", "no-event");
+    openedCards = [];
 }
-for (var I = 0; I < p.length; I++) {
-  n = p[I], n.addEventListener("click", F), n.addEventListener("click", G), n.addEventListener("click", N);
+
+function unmatched(){
+    openedCards[0].classList.add("unmatched");
+    openedCards[1].classList.add("unmatched");
+    disable();
+    setTimeout(function(){
+        openedCards[0].classList.remove("show", "open", "no-event","unmatched");
+        openedCards[1].classList.remove("show", "open", "no-event","unmatched");
+        enable();
+        openedCards = [];
+    },1100);
 }
-;
+
+function disable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.add('disabled');
+    });
+}
+
+
+function enable(){
+    Array.prototype.filter.call(cards, function(card){
+        card.classList.remove('disabled');
+        for(var i = 0; i < matchedCard.length; i++){
+            matchedCard[i].classList.add("disabled");
+        }
+    });
+}
+
+function moveCounter(){
+    moves++;
+    counter.innerHTML = moves;
+    //start timer on first click
+    if(moves == 1){
+        second = 0;
+        minute = 0; 
+        hour = 0;
+        startTimer();
+    }
+  
+    if (moves > 8 && moves < 12){
+        for( i= 0; i < 3; i++){
+            if(i > 1){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+    else if (moves > 13){
+        for( i= 0; i < 3; i++){
+            if(i > 0){
+                stars[i].style.visibility = "collapse";
+            }
+        }
+    }
+}
+
+var second = 0, minute = 0; hour = 0;
+var timer = document.querySelector(".timer");
+var interval;
+function startTimer(){
+    interval = setInterval(function(){
+        timer.innerHTML = minute+"mins "+second+"secs";
+        second++;
+        if(second == 60){
+            minute++;
+            second=0;
+        }
+        if(minute == 60){
+            hour++;
+            minute = 0;
+        }
+    },1000);
+}
+
+function congratulations(){
+    if (matchedCard.length == 16){
+        clearInterval(interval);
+        finalTime = timer.innerHTML;
+
+        modal.classList.add("show");
+      
+        var starRating = document.querySelector(".stars").innerHTML;
+
+        document.getElementById("finalMove").innerHTML = moves;
+        document.getElementById("starRating").innerHTML = starRating;
+        document.getElementById("totalTime").innerHTML = finalTime;
+
+        //closeicon on modal
+        closeModal();
+    };
+}
+
+function closeModal(){
+    closeicon.addEventListener("click", function(e){
+        modal.classList.remove("show");
+        startGame();
+    });
+}
+
+function playAgain(){
+    modal.classList.remove("show");
+    startGame();
+}
+
+for (var i = 0; i < cards.length; i++){
+    card = cards[i];
+    card.addEventListener("click", displayCard);
+    card.addEventListener("click", cardOpen);
+    card.addEventListener("click",congratulations);
+};
