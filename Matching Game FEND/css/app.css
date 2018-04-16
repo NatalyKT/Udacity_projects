@@ -1,43 +1,56 @@
+    /*
+ * Main part style
+ */
+
 html {
-	box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *::before,
 *::after {
-	box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 html,
 body {
-	width: 100%;
-	height: 100%;
-	margin: 0;
-	padding: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-	background: url(../img/abstract-dew-fresh-207355.jpg);
-	background-size: cover;
-	font-family: 'Coda', cursive;
-	color: blanchedalmond; 
-	}
+    background: #ffffff url('../img/nature-3294681_1920.jpg');
+    /* Background pattern from Subtle Patterns */
+    background-size: cover;
+    font-family: 'Coda', cursive;
+}
 
 .container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 }
 
 h1 {
-	font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
-    color: blanchedalmond; 
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 500;
+    color: #ffeaa0;
+    text-align: center;
+    font-size: 35px;
 }
 
-.moves {
-    color: blanchedalmond;
+p {
+    font-family: 'Open Sans', sans-serif;
+    color: #ffeaa0;
+}
+
+.copyright,
+.link {
+    text-align: center;
+    color: #ffeaa0;
 }
 
 
@@ -45,11 +58,10 @@ h1 {
  * Styles for the deck of cards
  */
 
-
 .deck {
-	width: 660px;
+    width: 660px;
     min-height: 680px;
-    background: linear-gradient(160deg, #fffacd 0%, #784919 100%);
+    background: url('../img/3521083889_34d0e0181f_b.jpg');
     padding: 32px;
     border-radius: 10px;
     box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.5);
@@ -61,8 +73,6 @@ h1 {
 }
 
 .deck .card {
-	height: 125px;
-    width: 125px;
     background: #2e3d49;
     font-size: 0;
     color: #ffffff;
@@ -74,192 +84,223 @@ h1 {
     box-shadow: 5px 2px 20px 0 rgba(46, 61, 73, 0.5);
 }
 
-.deck .card.open {
-	transform: rotateY(0);
-	background: #02b3e4;
-	cursor: default;
-	animation-name: flipInY;
-	-webkit-backface-visibility: visible !important;
-	backface-visibility: visible !important;
-	animation-duration: 0.9s;
+.deck .front {
+    height: 125px;
+    width: 125px;
+    border-radius: 8px;
+    background: linear-gradient(160deg, #ffeaa0 0%, #211a03 100%);
+    background-size: cover;
+    box-shadow: 1px 1px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
-.deck .card.show {
-	font-size: 33px;
+.deck img {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    padding: 0;
+    border-radius: 8px;
+    transition: all .5s linear;
+    -o-transition: all .5s linear;
+    transition: all .4s linear;
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+    opacity: 0;
 }
 
-.deck .card.match {
-	cursor: default;
-	background: url('../img/207355.jpg');
-	font-size: 33px;
-	animation-name: tossing;
-	-webkit-animation-name: tossing;	
-	animation-duration: 2.5s;	
-	-webkit-animation-duration: 2.5s;
-	opacity: 0.7;
+img.selected:hover,
+img.match:hover,
+img.incorrect:hover {
+    cursor: default;
 }
 
-.deck .card.unmatched {
-	animation-name: pulse;
-	-webkit-backface-visibility: visible !important;
-	backface-visibility: visible !important;
-	animation-duration: 0.9s;
-	background: #ff8181;
+img.selected,
+img.incorrect {
+    -webkit-transform: rotateY(180deg);
+    transform: rotateY(180deg);
+    opacity: 1;
 }
+
+img.match {
+    background: #ffeaa0 url('../img/wwf.png');
+    border-radius: 8px;
+    opacity: 0.5;
+}
+
+.link {
+    width: 25px;
+    height: 25px;
+}
+
 
 /*
  * Styles for the Score Panel
  */
 
-
 .score-panel {
-	text-align: left;
-	margin-bottom: 10px;
+    width: 780px;
+    text-align: left;
+    align-items: center;
+    margin-bottom: 10px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .score-panel .stars {
-	margin: 0;
-	padding: 0;
-	display: inline-block;
-	margin: 0 20px 0 0;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    min-width: 90px;
+    margin: 0 5px 0 0;
+    padding: 0 0 0 40;
 }
 
 .score-panel .stars li {
-	list-style: none;
-	display: inline-block;
-	
+    list-style: none;
+    margin: 0 7px 0 0;
 }
 
-.score-panel .restart {
-	float: right;
-	cursor: pointer;
-	padding-left: 200px;
+.fa-star {
+    color: #fbca39;
 }
 
-.timer {
-	display: inline-block;
-	margin: 0 5px 0 0;
-	padding-left: 70px;
+.score-panel .moves {
+    display: flex;
+    flex-grow: 1;
+    justify-content: left;
+}
+
+.score-panel .moves .moves_count {
+    align-items: center;
+    color: #ffeaa0;
+}
+
+.score-panel .timer {
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    color: #ffeaa0;
+}
+
+.score-panel .timer .time_tracker {
+    align-items: center;
+    color: #ffeaa0;
+}
+
+.score-panel #restart {
+    font-family: 'Open Sans', sans-serif;
+    color: #ffeaa0;
+    cursor: pointer;
+    background: transparent;
+    flex-grow: 1;
+    font-size: 1rem;
+    border: none;
+    outline: none;
 }
 
 
 /*
- * Styles for congratulations modal
+ * Styles for the Congratulation (Winner) Panel 
  */
 
-
-.overlay {
-	position: fixed;
-	width: 70%;
-
-	top: 10;
-	bottom: 10;
-	left: 10;
-	right: 10;
-	background: rgba(0, 0, 0, 0.7);
-	transition: opacity 500ms;
-	visibility: hidden;
-	opacity: 0.5;
+.winner_panel {
+    color: #ffeaa0;
+    background-color: #211a03;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    padding: 2em;
+    left: 50%;
+    top: -100%;
+    text-align: center;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    transition: 0.7s all ease-out;
+    opacity: 0.8;
 }
 
-.overlay:target {
-	visibility: visible;
-	opacity: 1;
-}
-  
-.popup_menu {
-	margin: 70px auto;
-	padding: 20px;
-	background: #000000;
-	border-radius: 5px;
-	width: 85%;
-	position: relative;
-	transition: all 5s ease-in-out;
-	font-family: 'Coda', cursive;
-	opacity: 0.5;
-}
-  
-.popup .close {
-	position: absolute;
-	top: 10px;
-	right: 20px;
-	transition: all 200ms;
-	font-size: 30px;
-	font-weight: bold;
-	text-decoration: none;
-	color: blanchedalmond;
+.winner_panel.active {
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    top: 50%;
+    z-index: 90;
 }
 
-.popup .close:hover {
-	color:  blanchedalmond;
+.winner-message .win_container {
+    position: relative;
+    z-index: 90;
 }
 
-.popup .congrats, 
-.score {
-	max-height: 30%;
-	overflow: auto;
-	text-align: center;
+.winner_panel h2 {
+    font-size: 1.6rem;
+    color: #ffeaa0;
+    text-align: center;
 }
 
-.show {
-	visibility: visible !important;
-	opacity: 100 !important;
+.winner_panel p {
+    color: #ffeaa0;
+    text-align: center;
 }
 
-#starRating li {
-	display: inline-block;
+.winner_panel .starRating {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
 }
 
-#play-again {
-	background-color: #141214;
-	padding: 0.7rem 0.7rem;
-	font-size: 1.1rem;
-	display: block;
-	margin: 0 auto;
-	width: 23%;
-	font-family: 'Coda', cursive;
-	color: blanchedalmond;
-	border-radius: 5px;
+.winner_panel .starRating li {
+    list-style: none;
+    margin: 0 5px 0 0;
 }
 
-/* animations */
-@keyframes flipInY {
-0%, from {
-transform: perspective(200px) rotateY(180deg);
-}
-40% {
-transform: perspective(200px) rotateY(-10deg);
-}
-70% {
-transform: perspective(200px) rotateY(10deg);
-}
-100%, to {
-transform: perspective(200px) rotateY(0deg);
-}
-}
-
-@keyframes tossing {
-	0% {
-		transform: rotate(-4deg);	
-	}
-	50% {
-		transform: rotate(4deg);
-	}
-	100% {
-		transform: rotate(-4deg);	
-	}						
+.play_again {
+    display: inline-block;
+    font-weight: 400;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    background-color: #ffeaa0;
+    border: 1px solid #ffeaa0;
+    margin-top: 1rem;
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    line-height: 1.5;
+    border-radius: .25rem;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out, box-shadow .15s ease-in-out;
 }
 
-@keyframes pulse {
-	from {
-		transform: scale3d(1, 1, 1);
-	}
-
-	50% {
-		transform: scale3d(1.2, 1.2, 1.2);
-	}
-
-	to {
-		transform: scale3d(1, 1, 1);
-	}
+.play_again:hover {
+    background-color: #ffeaa0;
+    border-color: #ffeaa0;
 }
+
+
+/*
+ * Styles for the Responsive Part (Media Queries)
+ */
+
+@media only screen and (max-width: 680px) {
+    .container {
+        margin: 5px;
+        .score-panel {
+            width: 100%;
+        }
+        .score-panel .stars,
+        .score-panel .moves,
+        .score-panel .timer {
+            min-width: calc(100%/3);
+        }
+        .score-panel #restart,
+        {
+            width: 25px;
+            height: 25px;
+        }
+    }

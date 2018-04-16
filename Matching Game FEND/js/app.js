@@ -1,157 +1,173 @@
-var c = "function" == typeof Object.defineProperties ? Object.defineProperty : function(a, b, g) {
-  a != Array.prototype && a != Object.prototype && (a[b] = g.value);
-}, d = "undefined" != typeof window && window === this ? this : "undefined" != typeof global && null != global ? global : this;
-function e() {
-  e = function() {
-  };
-  d.Symbol || (d.Symbol = f);
-}
-var f = function() {
-  var a = 0;
-  return function(b) {
-    return "jscomp_symbol_" + (b || "") + a++;
-  };
-}();
-function h() {
-  e();
-  var a = d.Symbol.iterator;
-  a || (a = d.Symbol.iterator = d.Symbol("iterator"));
-  "function" != typeof Array.prototype[a] && c(Array.prototype, a, {configurable:!0, writable:!0, value:function() {
-    return k(this);
-  }});
-  h = function() {
-  };
-}
-function k(a) {
-  var b = 0;
-  return l(function() {
-    return b < a.length ? {done:!1, value:a[b++]} : {done:!0};
-  });
-}
-function l(a) {
-  h();
-  a = {next:a};
-  a[d.Symbol.iterator] = function() {
-    return this;
-  };
-  return a;
-}
-function m() {
-  var a = n;
-  h();
-  var b = a[Symbol.iterator];
-  a = b ? b.call(a) : k(a);
-  for (var g = []; !(b = a.next()).done;) {
-    g.push(b.value);
-  }
-  return g;
-}
-var n = document.getElementsByClassName("card"), p = [].concat(n instanceof Array ? n : m());
-console.log(p);
-var q = document.getElementById("card-deck"), t = 0, u = document.querySelector(".moves"), v = document.querySelectorAll(".fa-star"), w = document.getElementsByClassName("match"), x = document.querySelector(".close"), y = document.getElementById("popup_menu"), z = [];
-function A() {
-  for (var a = p, b = a.length, g, r; 0 !== b;) {
-    r = Math.floor(Math.random() * b), --b, g = a[b], a[b] = a[r], a[r] = g;
-  }
-  return a;
-}
-document.body.onload = B();
-function B() {
-  p = A();
-  for (var a = 0; a < p.length; a++) {
-    q.innerHTML = "", [].forEach.call(p, function(a) {
-      q.appendChild(a);
-    }), p[a].classList.remove("show", "open", "match", "disabled");
-  }
-  t = 0;
-  u.innerHTML = t;
-  for (a = 0; a < v.length; a++) {
-    v[a].style.color = "#FFD700", v[a].style.visibility = "visible";
-  }
-  hour = C = D = 0;
-  document.querySelector(".timer").innerHTML = "0 mins 0 secs";
-  clearInterval(E);
-}
-function F() {
-  this.classList.toggle("open");
-  this.classList.toggle("show");
-  this.classList.toggle("disabled");
-}
-function G() {
-  z.push(this);
-  if (2 === z.length) {
-    t++;
-    u.innerHTML = t;
-    1 == t && (hour = C = D = 0, H());
-    if (8 < t && 12 > t) {
-      for (I = 0; 3 > I; I++) {
-        1 < I && (v[I].style.visibility = "collapse");
-      }
-    } else {
-      if (13 < t) {
-        for (I = 0; 3 > I; I++) {
-          0 < I && (v[I].style.visibility = "collapse");
-        }
-      }
-    }
-    z[0].type === z[1].type ? (z[0].classList.add("match", "disabled"), z[1].classList.add("match", "disabled"), z[0].classList.remove("show", "open", "no-event"), z[1].classList.remove("show", "open", "no-event"), z = []) : J();
-  }
-}
-function J() {
-  z[0].classList.add("unmatched");
-  z[1].classList.add("unmatched");
-  K();
-  setTimeout(function() {
-    z[0].classList.remove("show", "open", "no-event", "unmatched");
-    z[1].classList.remove("show", "open", "no-event", "unmatched");
-    L();
-    z = [];
-  }, 1100);
-}
-function K() {
-  Array.prototype.filter.call(p, function(a) {
-    a.classList.add("disabled");
-  });
-}
-function L() {
-  Array.prototype.filter.call(p, function(a) {
-    a.classList.remove("disabled");
-    for (a = 0; a < w.length; a++) {
-      w[a].classList.add("disabled");
-    }
-  });
-}
-var D = 0, C = 0;
-hour = 0;
-var M = document.querySelector(".timer"), E;
-function H() {
-  E = setInterval(function() {
-    M.innerHTML = C + "mins " + D + "secs";
-    D++;
-    60 == D && (C++, D = 0);
-    60 == C && (hour++, C = 0);
-  }, 1000);
-}
-function N() {
-  if (16 == w.length) {
-    clearInterval(E);
-    finalTime = M.innerHTML;
-    y.classList.add("show");
-    var a = document.querySelector(".stars").innerHTML;
-    document.getElementById("finalMove").innerHTML = t;
-    document.getElementById("starRating").innerHTML = a;
-    document.getElementById("totalTime").innerHTML = finalTime;
-    O();
-  }
+// Create an array for all cards 
+
+var f = [{
+        b: 1,
+        a: "img/antelope.png"
+    }, {
+        b: 2,
+        a: "img/bird-heron.png"
+    }, {
+        b: 3,
+        a: "img/blur-chili.png"
+    }, {
+        b: 4,
+        a: "img/fox.png"
+    }, {
+        b: 5,
+        a: "img/frog.png"
+    }, {
+        b: 6,
+        a: "img/hedgehog.png"
+    }, {
+        b: 7,
+        a: "img/owl.png"
+    }, {
+        b: 8,
+        a: "img/raccoon.png"
+    }, {
+        b: 9,
+        a: "img/antelope.png"
+    }, {
+        b: 10,
+        a: "img/bird-heron.png"
+    }, {
+        b: 11,
+        a: "img/blur-chili.png"
+    }, {
+        b: 12,
+        a: "img/fox.png"
+    }, {
+        b: 13,
+        a: "img/frog.png"
+    }, {
+        b: 14,
+        a: "img/hedgehog.png"
+    }, {
+        b: 15,
+        a: "img/owl.png"
+    }, {
+        b: 16,
+        a: "img/raccoon.png"
+    }],
+    g = document.querySelectorAll(".back_img"),
+    h;
+
+    // Declare a function and assign its value for the Moves Counting and for the StarRating
+
+function k() {
+    l();
+    for (var a = document.querySelectorAll(".fa-star"), c = 0; 3 > c; c++) a[c].style.color = "#fbca39";
+    a = document.querySelectorAll(".starRating .fa-star");
+    for (c = 0; 3 > c; c++) a[c].style.color = "#fbca39";
+    document.querySelector(".winner_panel").classList.remove("active");
+    document.querySelector(".moves_count").innerText = "Moves: 0";
+    clickCounter = 0;
+    m();
+    clearInterval(h);
+    n();
+    p()
 }
 
-function O() {
-  x.addEventListener("click", function() {
-    y.classList.remove("show");
-    B();
-  });
+// A randomly chosen function between two sets
+
+function q() {
+    return Math.random() - .5
 }
-for (var I = 0; I < p.length; I++) {
-  n = p[I], n.addEventListener("click", F), n.addEventListener("click", G), n.addEventListener("click", N);
+
+// Add and remove all images to the page 
+
+function m() {
+    l();
+    f.sort(q);
+    for (var a = 0; a < f.length; a++) g[a].setAttribute("src", f[a].a);
+    r()
 }
-;
+
+function l() {
+    for (var a = 0; a < f.length; a++) g[a].setAttribute("src", ""), g[a].className = "back_img"
+}
+
+// Time tracker
+
+function n() {
+    var a = document.querySelector(".time_tracker"),
+        c = Date.now();
+    clearInterval(h);
+    h = setInterval(function () {
+        var b = Math.floor((Date.now() - c) / 1E3);
+        a.innerText = (10 > Math.floor(b / 60) ? "0" + Math.floor(b / 60) : Math.floor(b / 60)) + " : " + (10 > b % 60 ? "0" + b % 60 : b % 60)
+    }, 500)
+}
+
+// Restart the game
+
+function p() {
+    document.querySelector("#restart").addEventListener("click", k)
+}
+
+// Game process - variants for matched images and incorrect
+
+function t(a) {
+    var c = document.querySelectorAll(".selected"),
+        b = "match";
+    a || (b = "incorrect");
+    c.forEach(function (a) {
+        return a.className = b
+    });
+    u()
+}
+
+function u() {
+    var a = document.querySelectorAll(".incorrect");
+    setTimeout(function () {
+        return a.forEach(function (a) {
+            return a.className = "back_img"
+        })
+    }, 1E3)
+}
+
+// Total scores, rating. EventListeners for the game.
+
+function r() {
+    for (var a = document.querySelectorAll(".back_img"), c = [], b = {
+            c: 0
+        }; b.c < a.length; b = {
+            c: b.c
+        }, b.c++) a[b.c].addEventListener("click", function (b) {
+        return function () {
+            if ("back_img" === a[b.c].className) {
+                a[b.c].className = "selected";
+                c.push(a[b.c]);
+                if (2 === c.length) {
+                    c[0].src === c[1].src ? t(!0) : t(!1);
+                    c = [];
+                    clickCounter += 1;
+                    var d = document.querySelectorAll(".stars .fa-star"),
+                        e = document.querySelectorAll(".starRating .fa-star");
+                    switch (clickCounter) {
+                        case 16:
+                            d[0].style.color = "#fbca39";
+                            d[1].style.color = "#fbca39";
+                            d[2].style.color =
+                                "#211a03";
+                            e[0].style.color = "#fbca39";
+                            e[1].style.color = "#fbca39";
+                            e[2].style.color = "#e2dcc9";
+                            break;
+                        case 32:
+                            d[0].style.color = "#fbca39", d[1].style.color = "#211a03", d[2].style.color = "#211a03", e[0].style.color = "#fbca39", e[1].style.color = "#e2dcc9", e[2].style.color = "#e2dcc9"
+                    }
+                    document.querySelector(".moves_count").innerText = "Moves: " + clickCounter;
+                    document.querySelector(".final_moves").innerText = "Moves: " + clickCounter
+                }
+                document.querySelectorAll(".match").length === document.querySelectorAll(".front img").length &&
+                    (document.querySelector(".winner_panel").classList.add("active"), clearInterval(h), document.querySelector(".totalTime").innerText = "Time " + document.querySelector(".time_tracker").innerText, document.querySelector(".play_again").addEventListener("click", k))
+            }
+        }
+    }(b))
+}
+m();
+n();
+p();
+document.querySelector(".moves_count").innerText = "Moves: 0";
+clickCounter = 0;
