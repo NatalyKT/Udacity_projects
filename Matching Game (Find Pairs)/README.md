@@ -18,6 +18,6 @@ Click and try to play!
 
 ## Rights and Copywriting
 
-The specific idea of this project entirely belongs to the for-profit educational organization [Udacity] (https://udacity.com). 
-Execution and partial design of the project - [natay_kt] (https://github.com/NatalyKT).
-All photos used in the project are taken from the site with free stock photos [PEXELS] (https://www.pexels.com/). And certainly, all the images belong to their owners, who have exclusive rights to their excellent wildlife photos.
+The specific idea of this project entirely belongs to the for-profit educational organization [Udacity](https://udacity.com). 
+Execution and partial design of the project - [nataly_kt](https://github.com/NatalyKT).
+All photos used in the project are taken from the site with free stock photos [PEXELS](https://www.pexels.com/). And certainly, all the images belong to their owners, who have exclusive rights to their excellent wildlife photos.
