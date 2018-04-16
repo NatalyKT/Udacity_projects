@@ -14,6 +14,8 @@ The game ends once all cards have been correctly matched.
 
 ### Direct link to the game: 
 
+https://nataly_kt.github.io/Udacity_projects/Matching%20Game%20(Find%20Pairs)/index.html
+
 Click and try to play! 
 
 ## Rights and Copywriting
