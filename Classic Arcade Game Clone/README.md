@@ -10,7 +10,7 @@ The player can use keys move left :arrow_left:, right :arrow_right:, up :arrow_u
 
 ### Direct link to the game: 
 
-[Click here and try to play!](https://natalykt.github.io/Udacity_projects/Matching%20Game%20(Find%20Pairs)/index.html)
+[Click here and try to play!](https://natalykt.github.io/Udacity_projects/Classic%20Arcade%20Game%20Clone/index.html)
 
 ## :copyright: Rights and Copywriting 
 
