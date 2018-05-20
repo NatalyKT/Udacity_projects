@@ -14,7 +14,8 @@ The player can use keys move left :arrow_left:, right :arrow_right:, up :arrow_u
 
 [Click here and try to play!](https://natalykt.github.io/Udacity_projects/Classic%20Arcade%20Game%20Clone/index.html)
 
-For downloading this game, just use the [link] (https://github.com/NatalyKT/Udacity_projects.git). Unpack the archive using a repacker (for example, ZIP or RAR) and open file index.html in the folder "Classic Arcade Game Clone". That's all!
+For downloading this game, just use the link https://github.com/NatalyKT/Udacity_projects.git. Click the button "Clone or download" and select the preferred option (for example, "Download ZIP)
+Unpack the archive using a repacker (for example, ZIP or RAR) and open file index.html in the folder "Classic Arcade Game Clone". That's all!
 
 
 ## :copyright: Rights and Copywriting 
