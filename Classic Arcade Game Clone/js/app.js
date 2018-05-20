@@ -1,3 +1,5 @@
+'use strict';
+
 // Enemies our player must avoid
 let Enemy = function (x, y, speed) {
     // Determine coordinate axis variables
@@ -57,16 +59,20 @@ Player.prototype.render = function () {
 let player = new Player(202, 380);
 
 // Place all enemy objects in an array called allEnemies
-let allEnemies = [];
+var allEnemies = [];
+for(var i=0;i<3;i++){
+    var enemy=new Enemy(-100,60+80*i, Math.random()*400+100);
+    allEnemies.push(enemy);
+}
 
 // "y" coordinate of the enemies: 62 + 83(row height) + 83(83(row height), so that the line of movement of the beetles look pretty smooth
-let enemyLocation = [62, 145, 228];
+var enemyLocation = [62, 145, 228];
 
 // The movement speed function for each enemy when moving across the screen, until it goes beyond the border
-enemyLocation.forEach(function (locationY) {
+/*enemyLocation.forEach(function (locationY) {
     enemy = new Enemy(0, locationY, 270);
     allEnemies.push(enemy);
-});
+}); */
 
 // Adds the ability to use the arrow keys for the user
 // Also limits the player's field of action by the parameters of the playing field (505px x 606px)
@@ -87,6 +93,7 @@ Player.prototype.handleInput = function (useArrows) {
 
 // When the player reaches a cube with water, he wins (that is, successfully avoids all enemies), and the game repeats after a short delay (250)    
     if (this.y < 0) {
+        alert('Congratulations! You have successfully avoided enemies and now can have a good rest by the river. Would you like to repeat?');
         setTimeout(() => {
             this.x = 202;
             this.y = 380;
